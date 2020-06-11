@@ -77,7 +77,7 @@ class Portfolio:
         return(np.sqrt(np.dot(self.percentages.T, np.dot(self.historical_daily_returns.cov() *250, self.percentages))))
 
 
-class Optimizer():
+class Optimizer:
 
     def __init__(portfolio):
         self.portfolio = portfolio
@@ -104,7 +104,7 @@ class Optimizer():
             self.pfolio_vols.append(np.sqrt(np.dot(weights.T, np.dot(self.returns.cov() *250, weights))))
     
             # Sharpe Ratio
-            sharpe_arr.append(self.pfolio_returns[x]/self.pfolio_vols[x])
+            self.sharpe_arr.append(self.pfolio_returns[x]/self.pfolio_vols[x])
 
         #convert arrays in numpy arrays
         self.pfolio_returns = np.array(self.pfolio_returns)
