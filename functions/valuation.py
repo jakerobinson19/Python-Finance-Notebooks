@@ -13,9 +13,9 @@ from plotly.subplots import make_subplots
 def format_data(data):
 	data.date = data.date.astype('datetime64')
 	data = data.drop(['link',
-					'finalLink',
-					'symbol',
-					'acceptedDate'], axis=1).T
+			'finalLink',
+			'symbol',
+			'acceptedDate'], axis=1).T
 	data.columns = data.iloc[0].astype(str).str[:10]
 	data = data[1:]
 	del data.columns.name
@@ -23,10 +23,7 @@ def format_data(data):
 	return(data)
 
 def generate_url(ticker, api_key, p_type, statement):
-	return('https://financialmodelingprep.com/api/v3/{}/{}?period={}&apikey={}'.format(statement,
-																						ticker,
-																						p_type,
-																						api_key))
+	return('https://financialmodelingprep.com/api/v3/{}/{}?period={}&apikey={}'.format(statement, ticker, p_type, api_key))
 
 def historical_prices(ticker, api_key):
 	url = 'https://financialmodelingprep.com/api/v3/historical-price-full/{}?&apikey={}'.format(ticker,api_key)
@@ -76,15 +73,15 @@ def quote(ticker, api_key):
 
 	quote.columns = [ticker]
 	quote = quote.loc[['name', 'exchange',
-						'price','yearHigh',
-						'yearLow','marketCap',
-						'volume','eps','pe',
-						'sharesOutstanding']]
+			   'price','yearHigh',
+			   'yearLow','marketCap',
+			   'volume','eps','pe',
+			   'sharesOutstanding']]
 	quote.index = ['Name','Exchange',
-					'Price','52-wk High',
-					'52 wk Low','Market Cap',
-					'Volume','EPS','P/E',
-					'Shares Outstanding']
+		       'Price','52-wk High',
+		       '52 wk Low','Market Cap',
+		       'Volume','EPS','P/E',
+		       'Shares Outstanding']
 
 	return(quote)
 
