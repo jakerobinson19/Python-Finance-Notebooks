@@ -138,7 +138,7 @@ def get_historical_dividends(ticker, api_key):
 	divs_json = json.loads(d.text)
 	try:
 		dividends = pd.DataFrame(divs_json["historical"], columns=['date','adjDividend']).set_index('date')
-
+		dividends.index = pd.to_datetime(dividends.index, format='%Y/%m/%d')
 	except:
 		log_error("Historical Dividends Are Not Available at this time", divs_json)
 		dividends = None
